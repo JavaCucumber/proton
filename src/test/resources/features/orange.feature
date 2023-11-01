@@ -58,7 +58,7 @@ Feature: Orange Tests
     When handle or situation A in step def
     When handle or situation B in step def
     When handle or situation C in step def
-    When handle or 
+    When handle or situation E 
     
     
     
