@@ -250,21 +250,7 @@ public class LoginStepDef {
      	Thread.sleep(5000);
     }
     
-//    @Then("user name should exist in user table")
-//    public void search_user_in_table1() {
-//    	
-//        String empUser = (String)setUp.scenarioContext.getContext(Context.orange_user_name);
-//    	System.out.println(String.format("user enter new employee name %s",empUser));
-//    	
-//    	for(int i=0;i<adminPage.tableUserName().size();i++) {
-//    		if(adminPage.tableUserName().get(i).getText().contains(empUser)) {
-//    			System.out.println("New User found:");
-//    			break;
-//    		}
-//    	}	
-//    }
-    
-    
+   
     @Then("user name should exist in user table")
     public void tableUserRow() {
     	
@@ -293,19 +279,79 @@ public class LoginStepDef {
     
     
     @Then("user logout from app")
-    public void logout_app() {
+    public void logout_app() {	
+    }
+    
+    @When("login user with new credintails")
+    public void login_with_new_user() throws InterruptedException {
+    	String uname = (String) setUp.scenarioContext.getContext(Context.orange_user_name);
+    	orangeLogin.username().sendKeys(uname);
+    	orangeLogin.pwd().sendKeys("Test@1234");
+    	orangeLogin.submit().click();
+    	Thread.sleep(5000);
+    }
+    
+    @When("add new user data")
+    public void table_add_user(DataTable dt0) throws InterruptedException {
+    	
+    	List<String> newUserData = dt0.transpose().asList(String.class);
+    	
+    	Thread.sleep(1500);
+    	adminPage.selectUserRole().click();
+    	
+    	Thread.sleep(1500);
+    	adminPage.userRoleType().click();
+    	System.out.println("user select user role type");
+    	
+    	Thread.sleep(1500);
+    	adminPage.selectUserStatus().click();
+    	
+//    	Thread.sleep(1500);
+//    	adminPage.userStatusType().click();
+//    	System.out.println("user select user status type");
+    	
+    	Thread.sleep(1500);
+    	setUp.testUtil.webActions().click(adminPage.autoCompleteEmployeeName()).sendKeys(newUserData.get(2)).build().perform();
+    	System.out.println("user enter char in auto complete field");
+    	
+    	Thread.sleep(2000);
+    	WebElement randEmpList = setUp.testUtil.getRandomWebElement(adminPage.autoCompleteEmployeeName1());
+    	randEmpList.click();
+    	
+    	Thread.sleep(1500);
+    	String empUser = newUserData.get(3);
+    	adminPage.adminUserName().sendKeys(empUser);
+    	setUp.scenarioContext.setContext(Context.orange_user_name, empUser);
+    	
+    	System.out.println(String.format("user enter new employee name %s",empUser));
+    	
+    	Thread.sleep(1500);
+    	adminPage.adminPassword().click();
+    	Thread.sleep(1500);
+    	adminPage.adminPassword().sendKeys(newUserData.get(4));
+    	System.out.println("user enter password");
+    	
+    	Thread.sleep(3000);
+    	setUp.testUtil.webActions().click(adminPage.adminConfPassword()).sendKeys(adminPage.adminConfPassword(),newUserData.get(4)).build().perform();
+    	System.out.println("user enters confirm password");
+    	
+    }
+    
+    @Then("verify new user exist in table row")
+    public void verify_user_exist() {
+      	
+    	if (adminPage.userTable().isDisplayed()) {
+    		Assert.isTrue(true, "Element is displayed");
+    		
+    	}else {
+    		Assert.isTrue(false, "Element is not displayed");
+    	}
+    		
     	
     	
     	
     	
     }
-    
-    
-    
-    
-    
-    
-    
     
     
     

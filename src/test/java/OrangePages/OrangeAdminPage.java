@@ -30,7 +30,7 @@ public class OrangeAdminPage {
 	By addUserSaveBTN = By.xpath("//button[@type='submit']");
 	
 	By tableUserName = By.xpath("//div[@class='oxd-table-card']/div/div[2]");
-	
+	public By newUserTable = By.xpath("//div[@row-decorator='oxd-table-decorator-card']");
 		
     
 	
@@ -87,5 +87,10 @@ public class OrangeAdminPage {
 	public WebElement addUserSave() {   return driver.findElement(addUserSaveBTN);  }
 	
 	public List<WebElement> tableUserName(){ return driver.findElements(tableUserName);  }
-
+    
+	public WebElement userTable() { return driver.findElement(newUserTable);}
+	
+	
+	
+	
 }

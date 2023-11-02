@@ -19,6 +19,7 @@ import static io.cucumber.junit.platform.engine.Constants.FILTER_TAGS_PROPERTY_N
 @SelectClasspathResource("features")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME,value="html:target/cucumber-report.html")
+@ConfigurationParameter(key = PLUGIN_PROPERTY_NAME,value="io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm")
 //@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "protontests")
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "orangetests")
 //@ConfigurationParameter(key = FILTER_NAME_PROPERTY_NAME, value = ".*Create Admin User")

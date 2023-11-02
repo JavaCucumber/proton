@@ -12,7 +12,7 @@
 		<maven.compiler.source.version>17</maven.compiler.source.version>
 		<maven.compiler.target.version>17</maven.compiler.target.version>
 		<allure.maven.version>2.10.0</allure.maven.version>
-		<aspectj.version>1.9.6</aspectj.version>
+		<aspectj.version>1.9.20.1</aspectj.version>
 		<cucumber.version>7.14.0</cucumber.version>
 		<selenium.version>4.14.1</selenium.version>
 		<webdrivermanager.version>5.6.0</webdrivermanager.version>
@@ -200,8 +200,7 @@
 					</properties>
 					<argLine>
 						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-						-Dcucumber.options="--plugin
-						io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
+						-Dcucumber.options="--plugin  io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
 					</argLine>
 					<systemProperties>
 						<property>
@@ -213,10 +212,12 @@
 							<value>true</value>
 						</property>
 					</systemProperties>
-					<properties>
+					<!--<properties>
 						<configurationParameters>
-							cucumber.junit-platform.naming-strategy=long </configurationParameters>
-					</properties>
+							cucumber.junit-platform.naming-strategy=long 
+						</configurationParameters>
+						
+					</properties>-->
 				</configuration>
 				<dependencies>
 					<dependency>

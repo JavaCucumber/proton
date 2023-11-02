@@ -1,5 +1,6 @@
 package helpers;
 
+import java.time.Duration;
 import java.util.Locale;
 
 import org.openqa.selenium.WebElement;
@@ -19,6 +20,7 @@ public class TestSetUp {
     public Faker faker;
     public ScenarioContext scenarioContext;
     public WebDriverWait webWait;
+    public ApplicationHooks hooks;
     
     public TestSetUp()  {
   
@@ -27,6 +29,7 @@ public class TestSetUp {
         testUtil = new TestUtil(baseTest.DriverManager());
         faker = new Faker(new Locale("en_US"));
         scenarioContext =new ScenarioContext();
-        
+        this.webWait = new WebDriverWait(baseTest.DriverManager(),Duration.ofSeconds(30));
+       
     }
 }

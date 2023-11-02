@@ -30,7 +30,7 @@ Feature: Orange Tests
     When add employee admin user data  
     Then user name should exist in user table
     
- @wip
+
   Scenario: Create New admin User
     Given user on orange "https://opensource-demo.orangehrmlive.com/" app login page 
     When user enter orange given credentials
@@ -48,6 +48,25 @@ Feature: Orange Tests
     And user clicks on save button
     Then user name should exist in user table
     Then logout from app
+    When login user with new credintails
+    Then logout from app
+    
+    
+   @wip
+  Scenario: Create And Delete User
+    Given user on orange "https://opensource-demo.orangehrmlive.com/" app login page 
+    When user enter orange given credentials
+           |Admin	 | admin123 |
+    Then Navigates to orange dashboard page
+    When click to "admin" tab
+    Then user management is selected 
+    When user clicks on add button
+    When add new user data
+          | Admin | Enabled | A | TestUser523785 |Test@1234 |
+    And user clicks on save button
+    Then verify new user exist in table row
+  
+     
     
   @regex
   Scenario: cucumber reegex example
